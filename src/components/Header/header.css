@@ -1,0 +1,73 @@
+.app_header {
+    padding: 23px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav_list {
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+}
+
+.nav_item {
+    margin: 0 35px 0 0;
+    font-family: 'Raleway', sans-serif;
+    text-transform: uppercase;
+}
+
+.nav_item a {
+    padding: 5px 0;
+}
+
+.nav_item a.active {
+    position: relative;
+    font-weight: bold;
+    color: #5ece7b;
+}
+
+.nav_item a.active::after {
+    position: absolute;
+    content: "";
+    width: 150%;
+    height: 2px;
+    background-color: #5ece7b;
+    left: -25%;
+    bottom: -23px;
+}
+
+.logo {
+    margin: 5px 0 0 -200px;
+    transition: transform .3s ease-out;
+}
+
+.logo:hover {
+    transform: scale(1.1);
+}
+
+.logo img {
+    display: block;
+    max-width: 100%;
+}
+
+.actions {
+    margin: 7px 0 0 0;
+    display: flex;
+    align-items: center;
+}
+
+.currency-icon {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.currency-icon .row {
+    margin: 5px 0 0 10px;
+}
+
+.cart-icon {
+    margin: 0 0 0 20px;
+    cursor: pointer;
+}
