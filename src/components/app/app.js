@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 import "./app.css";
 
-import Header from "../Header/header";
+import ProductListingPage from "../PLP/plp";
 
 export default class App extends React.Component {
   render() {
@@ -11,7 +11,7 @@ export default class App extends React.Component {
       <Router>
         <div className="app">
           <div className="container">
-            <Header />
+            <ProductListingPage />
           </div>
         </div>
       </Router>
