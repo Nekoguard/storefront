@@ -2,21 +2,53 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import "./header.css";
+import {ApolloClient, gql, InMemoryCache} from "@apollo/client";
 
 export default class Header extends React.Component {
+  _client = new ApolloClient({
+    uri: 'http://localhost:4000/',
+    cache: new InMemoryCache()
+  })
+
+  state = {
+    categories: []
+  }
+
+  componentDidMount() {
+    this.getCategories()
+      .then(data => {
+        this.setState({
+          categories: data
+        });
+      });
+  }
+
+  getCategories = async () => {
+    return await this._client.query({
+      query: gql`
+        query GetCategories {
+          categories {
+            name
+          }
+        }`
+    }).then((data) => {
+        return [data.data.categories[0].name, data.data.categories[1].name, data.data.categories[2].name]
+    });
+  }
+
   render() {
     return (
       <div className="app_header">
         <nav className="nav">
           <ul className="nav_list">
             <li className="nav_item">
-              <Link className="active" to="/women/">Women</Link>
+              <Link className="active" to="/">{this.state.categories[0]}</Link>
             </li>
             <li className="nav_item">
-              <Link to="/men/">Men</Link>
+              <Link to="/clothes/">{this.state.categories[1]}</Link>
             </li>
             <li className="nav_item">
-              <Link to="/kids/">Kids</Link>
+              <Link to="/tech/">{this.state.categories[2]}</Link>
             </li>
           </ul>
         </nav>
