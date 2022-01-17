@@ -4,11 +4,15 @@ import "./product-card.css";
 
 export default class ProductCard extends React.Component {
   render() {
+    const { name, img, price } = this.props;
+
     return (
       <a href="/" className="product-card">
-        <img className="product-img" src={this.props.img} alt="product"/>
-        <span className="product-title">{this.props.name}</span>
-        <span className="product-price">{this.props.price}</span>
+        <div className="product-img-container">
+          <img className="product-img" src={ img } alt="product"/>
+        </div>
+        <span className="product-title">{ name }</span>
+        <span className="product-price">{ price }</span>
       </a>
     )
   }

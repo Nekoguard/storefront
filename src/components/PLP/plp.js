@@ -13,40 +13,25 @@ export default class ProductListingPage extends React.Component {
   });
 
   state = {
-    productsCount: 0,
-    names: [],
-    images: [],
-    prices: []
+    products: []
   };
 
   componentDidMount() {
     this.getData()
       .then(result => {
-        let names = [],
-            images = [],
-            prices = [];
-
-        result.data.categories[0].products.forEach(product => {
-          names.push(product.name);
-        });
-
-        result.data.categories[0].products.forEach(product => {
-          images.push(product.gallery[0]);
-        });
-
-        result.data.categories[0].products.forEach(product => {
-          prices.push(product.prices[0].amount);
-        });
-
-        console.log(result.data.categories[0].products);
+        let transformedProducts = result.map(product => {
+          return {
+            id: product.id,
+            name: product.name,
+            img: product.gallery[0],
+            price: product.prices[0].amount
+          }
+        })
 
         this.setState({
-          productsCount: result.data.categories[0].products.length,
-          names,
-          images,
-          prices
-        })
-      })
+          products: transformedProducts
+        });
+      });
   }
 
   getData = async () => {
@@ -69,23 +54,23 @@ export default class ProductListingPage extends React.Component {
             }
           }
         }`
-    }).then(data => data);
+    }).then(data => data.data.categories[0].products);
   }
 
   renderCards = () => {
-    return this.state.names.map((name) => {
-      return <ProductCard name={name} />
-    })
+    return this.state.products.map(({id, name, img, price}) => {
+      return <ProductCard key={ id } name={ name } img={ img } price={ price } />
+    });
   }
 
   render() {
     return (
       <div className="product-page">
         <Header />
-        {/*заголовок будет отличаться на каждой странице категрии*/}
+        {/*заголовок будет отличаться на каждой странице категории*/}
         <h1 className="title">Category name</h1>
         <div className="products">
-          {this.renderCards()}
+          { this.renderCards() }
         </div>
       </div>
     )

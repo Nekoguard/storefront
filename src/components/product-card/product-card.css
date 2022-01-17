@@ -5,10 +5,16 @@
     flex-direction: column;
 }
 
-.product-img {
-    display: block;
+.product-img-container {
     width: 354px;
     height: 330px;
+    overflow: hidden;
+}
+
+.product-img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
     -webkit-user-drag: none;
 }
 
