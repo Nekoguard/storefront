@@ -54,7 +54,19 @@ export default class ProductListingPage extends React.Component {
             }
           }
         }`
-    }).then(data => data.data.categories[0].products);
+    }).then(data => {
+      if (this.props.category === "All") {
+        return data.data.categories[0].products;
+      }
+
+      if (this.props.category === "Clothes") {
+        return data.data.categories[1].products;
+      }
+
+      if (this.props.category === "Tech") {
+        return data.data.categories[2].products;
+      }
+    });
   }
 
   renderCards = () => {
@@ -64,11 +76,13 @@ export default class ProductListingPage extends React.Component {
   }
 
   render() {
+    const { category } = this.props;
+
     return (
       <div className="product-page">
         <Header />
-        {/*заголовок будет отличаться на каждой странице категории*/}
-        <h1 className="title">Category name</h1>
+        <h1 className="title">{ category }</h1>
+
         <div className="products">
           { this.renderCards() }
         </div>
