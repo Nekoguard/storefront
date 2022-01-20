@@ -6,6 +6,7 @@ import "./app.css";
 import AllPage from "../pages/all-page/all-page";
 import ClothesPage from "../pages/clothes-page/clothes-page";
 import TechPage from "../pages/tech-page/tech-page";
+import Header from "../header/header";
 
 export default class App extends React.Component {
   render() {
@@ -13,6 +14,8 @@ export default class App extends React.Component {
         <Router>
           <div className="app">
             <div className="container">
+              <Header />
+
               <Routes>
                 <Route exact path="/" element={ <AllPage /> } />
                 <Route exact path="/clothes/" element={ <ClothesPage /> } />

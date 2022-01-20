@@ -12,7 +12,7 @@ export default class ProductCard extends React.Component {
           <img className="product-img" src={ img } alt="product"/>
         </div>
         <span className="product-title">{ name }</span>
-        <span className="product-price">{ price }</span>
+        <span className="product-price">$ { price }</span>
       </a>
     )
   }

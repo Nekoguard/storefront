@@ -2,7 +2,6 @@ import React from "react";
 
 import "./plp.css";
 
-import Header from "../header/header";
 import ProductCard from "../product-card/product-card";
 import {ApolloClient, gql, InMemoryCache} from "@apollo/client";
 
@@ -80,7 +79,6 @@ export default class ProductListingPage extends React.Component {
 
     return (
       <div className="product-page">
-        <Header />
         <h1 className="title">{ category }</h1>
 
         <div className="products">

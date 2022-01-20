@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import "./header.css";
 import {ApolloClient, gql, InMemoryCache} from "@apollo/client";
+import CurrencySwitcher from "../currency-switcher/currency-switcher";
 
 export default class Header extends React.Component {
   _client = new ApolloClient({
@@ -11,7 +12,8 @@ export default class Header extends React.Component {
   })
 
   state = {
-    categories: []
+    categories: [],
+    showSwitcher: false
   }
 
   componentDidMount() {
@@ -34,6 +36,14 @@ export default class Header extends React.Component {
     }).then((data) => {
         return [data.data.categories[0].name, data.data.categories[1].name, data.data.categories[2].name]
     });
+  }
+
+  showSwitcher = () => {
+    if (this.state.showSwitcher) {
+      this.setState({showSwitcher: false});
+    } else if (!this.state.showSwitcher) {
+      this.setState({showSwitcher: true});
+    }
   }
 
   render() {
@@ -60,13 +70,16 @@ export default class Header extends React.Component {
         </div>
 
         <div className="actions">
-          <div className="currency-icon">
+          <div className="currency-icon" onClick={this.showSwitcher}>
             <img src="/img/currency.svg" alt="currency"/>
             <img className="row" src="/img/row.svg" alt="row"/>
           </div>
+
           <div className="cart-icon">
             <img src="/img/empty-cart.svg" alt="cart"/>
           </div>
+
+          {this.state.showSwitcher ? <CurrencySwitcher /> : null}
         </div>
       </div>
     );

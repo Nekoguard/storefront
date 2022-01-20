@@ -1,0 +1,27 @@
+.switcher {
+    padding: 10px 0;
+    min-width: 115px;
+    display: flex;
+    flex-direction: column;
+
+    filter: drop-shadow(0px 4px 20px rgba(25, 26, 26, 0.19));
+    background-color: #ffffff;
+
+    position: absolute;
+    top: 30px;
+    left: -20px;
+}
+
+.currency {
+    padding: 10px 20px;
+    font-family: "Raleway", sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 160%;
+    cursor: pointer;
+}
+
+.currency:hover {
+    background-color: #ffffff;
+    filter: drop-shadow(0px 4px 10px rgba(25, 26, 26, 0.19));
+}
