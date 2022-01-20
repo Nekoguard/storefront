@@ -2,6 +2,8 @@ import React from "react";
 
 import "./product-card.css";
 
+import Price from "../price/price";
+
 export default class ProductCard extends React.Component {
   render() {
     const { name, img, price } = this.props;
@@ -12,7 +14,7 @@ export default class ProductCard extends React.Component {
           <img className="product-img" src={ img } alt="product"/>
         </div>
         <span className="product-title">{ name }</span>
-        <span className="product-price">$ { price }</span>
+        <Price symbol={ price.currency.symbol } amount={ price.amount }/>
       </a>
     )
   }

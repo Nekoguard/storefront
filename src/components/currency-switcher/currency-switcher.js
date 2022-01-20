@@ -2,6 +2,7 @@ import React from "react";
 
 import "./currency-switcher.css";
 import {ApolloClient, gql, InMemoryCache} from "@apollo/client";
+import { CurrencyContext } from "../currency-context/currency-context";
 
 export default class CurrencySwitcher extends React.Component {
   _client = new ApolloClient({
@@ -36,21 +37,19 @@ export default class CurrencySwitcher extends React.Component {
     });
   }
 
-  checkCurrency = (e) => {
-    console.log(e.target.id);
-  }
-
-  renderCurrencyLabels = () => {
-    return this.state.currencies.map(({ label, symbol }) => {
-      return <li id={label} key={label} className="currency">{symbol} {label}</li>;
-    });
-  }
-
   render() {
     return (
-      <ul className="switcher" onClick={this.checkCurrency}>
-        { this.renderCurrencyLabels() }
-      </ul>
+      <CurrencyContext.Consumer>
+        {
+          ({ currency, switchCurrency }) => (
+            <ul className="switcher" onClick={switchCurrency}>
+              { this.state.currencies.map(({ label, symbol }) => {
+                return <li id={label} key={label} className="currency">{symbol} {label}</li>;
+              }) }
+            </ul>
+          )
+        }
+      </CurrencyContext.Consumer>
     )
   }
 }
