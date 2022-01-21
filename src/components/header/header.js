@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import "./header.css";
 import {ApolloClient, gql, InMemoryCache} from "@apollo/client";
@@ -52,21 +52,21 @@ export default class Header extends React.Component {
         <nav className="nav">
           <ul className="nav_list">
             <li className="nav_item">
-              <Link className="active" to="/">{this.state.categories[0]}</Link>
+              <NavLink to="/">{this.state.categories[0]}</NavLink>
             </li>
             <li className="nav_item">
-              <Link to="/clothes/">{this.state.categories[1]}</Link>
+              <NavLink to="/clothes/">{this.state.categories[1]}</NavLink>
             </li>
             <li className="nav_item">
-              <Link to="/tech/">{this.state.categories[2]}</Link>
+              <NavLink to="/tech/">{this.state.categories[2]}</NavLink>
             </li>
           </ul>
         </nav>
 
         <div className="logo">
-          <Link to="/">
+          <NavLink to="/">
             <img src="/img/logo.svg" alt="logo"/>
-          </Link>
+          </NavLink>
         </div>
 
         <div className="actions">
