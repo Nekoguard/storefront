@@ -13,8 +13,14 @@ export default class ProductCard extends React.Component {
         <div className="product-img-container">
           <img className="product-img" src={ img } alt="product"/>
         </div>
-        <span className="product-title">{ name }</span>
-        <Price symbol={ price.currency.symbol } amount={ price.amount }/>
+
+        <div className="card-content">
+          <div className="cart-button">
+            <img src="/img/cart-button.svg" alt="cart"/>
+          </div>
+          <span className="product-title">{ name }</span>
+          <Price symbol={ price.currency.symbol } amount={ price.amount }/>
+        </div>
       </a>
     )
   }
