@@ -8,6 +8,7 @@ import ClothesPage from "../pages/clothes-page/clothes-page";
 import TechPage from "../pages/tech-page/tech-page";
 import Header from "../header/header";
 import { CurrencyContext } from "../currency-context/currency-context";
+import ProductDescriptionPage from "../PDP/pdp";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -39,6 +40,7 @@ export default class App extends React.Component {
                 <Route exact path="/" element={ <AllPage /> } />
                 <Route exact path="/clothes/" element={ <ClothesPage /> } />
                 <Route exact path="/tech/" element={ <TechPage /> } />
+                <Route exact path="/pdp/" element={ <ProductDescriptionPage id="huarache-x-stussy-le" /> } />
               </Routes>
             </div>
           </div>
