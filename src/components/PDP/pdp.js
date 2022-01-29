@@ -5,8 +5,9 @@ import "./pdp.css";
 import Price from "../price/price";
 import {CurrencyContext} from "../currency-context/currency-context";
 import {ApolloClient, gql, InMemoryCache} from "@apollo/client";
+import {withRouter} from "../../hocs/withRouter";
 
-export default class ProductDescriptionPage extends React.Component {
+class ProductDescriptionPage extends React.Component {
   _client = new ApolloClient({
     uri: 'http://localhost:4000/',
     cache: new InMemoryCache()
@@ -30,7 +31,7 @@ export default class ProductDescriptionPage extends React.Component {
         const symbols = data.prices.map(price => price.currency.symbol);
 
         this.setState({
-          id: this.props.id,
+          id: this.props.params.id,
           name: data.name,
           brand: data.brand,
           amounts: amounts,
@@ -45,7 +46,7 @@ export default class ProductDescriptionPage extends React.Component {
     return await this._client.query({
       query: gql`
         query GetProductById {
-          product (id: "${this.props.id}") {
+          product (id: "${this.props.params.id}") {
             name,
             brand,
             prices {
@@ -151,3 +152,5 @@ export default class ProductDescriptionPage extends React.Component {
     )
   }
 }
+
+export default withRouter(ProductDescriptionPage);

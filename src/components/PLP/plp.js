@@ -103,7 +103,7 @@ export default class ProductListingPage extends React.Component {
 
               <div className="products">
                 { this.state.products.map(({id, name, img, price}) => {
-                  return <ProductCard key={ id } name={ name } img={ img } price={ price[current] } />
+                  return <ProductCard id={id} key={ id } name={ name } img={ img } price={ price[current] } />
                 }) }
               </div>
             </div>

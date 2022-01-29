@@ -40,7 +40,9 @@ export default class App extends React.Component {
                 <Route exact path="/" element={ <AllPage /> } />
                 <Route exact path="/clothes/" element={ <ClothesPage /> } />
                 <Route exact path="/tech/" element={ <TechPage /> } />
-                <Route exact path="/pdp/" element={ <ProductDescriptionPage id="huarache-x-stussy-le" /> } />
+                <Route path="/:id" element={ <ProductDescriptionPage /> } />
+                <Route path="clothes/:id" element={ <ProductDescriptionPage /> } />
+                <Route path="tech/:id" element={ <ProductDescriptionPage /> } />
               </Routes>
             </div>
           </div>
