@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./pdp.css";
+
 import Price from "../price/price";
 import {CurrencyContext} from "../currency-context/currency-context";
 import {ApolloClient, gql, InMemoryCache} from "@apollo/client";
@@ -17,7 +19,8 @@ export default class ProductDescriptionPage extends React.Component {
     amounts: [],
     symbols: [],
     gallery: [],
-    description: null
+    description: null,
+    mainPhotoSrc: null
   }
 
   componentDidMount() {
@@ -59,6 +62,26 @@ export default class ProductDescriptionPage extends React.Component {
     }).then(data => data.data.product);
   }
 
+  setSrc = () => {
+    return this.state.mainPhotoSrc ? this.state.mainPhotoSrc : this.state.gallery[0];
+  }
+
+  checkSrc = (e) => {
+    e.persist();
+
+    if (e.target.className === "description-img") {
+      this.setState(state => {
+        return {mainPhotoSrc: e.target.src};
+      })
+    }
+  }
+
+  renderImages = () => {
+    return this.state.gallery.map(src => {
+      return <img key={src} className="description-img" src={src} alt="description-pic"/>
+    })
+  }
+
   render() {
     return (
       <CurrencyContext.Consumer>
@@ -87,14 +110,12 @@ export default class ProductDescriptionPage extends React.Component {
 
             return (
               <div className="description-page">
-                <div className="photos">
-                  <img src="" alt="product"/>
-                  <img src="" alt="product"/>
-                  <img src="" alt="product"/>
+                <div className="photos" onClick={this.checkSrc}>
+                  { this.renderImages() }
                 </div>
 
-                <div className="img">
-                  <img src={this.state.gallery[0]} alt="product"/>
+                <div className="main-img">
+                  <img src={this.setSrc()} alt="product"/>
                 </div>
 
                 <div className="description-box">
@@ -104,14 +125,21 @@ export default class ProductDescriptionPage extends React.Component {
 
                   <div className="size-box">
                     <span>Size:</span>
+
+                    <div className="sizes">
+                      <div className="size">XS</div>
+                      <div className="size">S</div>
+                      <div className="size">M</div>
+                      <div className="size">L</div>
+                    </div>
                   </div>
 
                   <div className="price-box">
-                    <span>price:</span>
+                    <span>Price:</span>
                     <Price symbol={this.state.symbols[current]} amount={this.state.amounts[current]} />
                   </div>
 
-                  <button></button>
+                  <button className="add-to-cart-btn">Add to cart</button>
 
                   <div className="description" dangerouslySetInnerHTML={{ __html: this.state.description}}/>
                 </div>
