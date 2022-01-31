@@ -1,0 +1,54 @@
+.attribute-box {
+  margin: 0 0 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.attribute-box span {
+  display: inline-block;
+  margin: 0 0 10px;
+
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 18px;
+  text-transform: uppercase;
+}
+
+.attribute-values {
+  display: flex;
+  align-items: center;
+}
+
+.attribute-value {
+  margin: 0 10px 0 0;
+  min-width: 60px;
+  min-height: 40px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 16px;
+  line-height: 18px;
+
+  border: 1px solid #1D1F22;
+}
+
+/*.sizes .size {*/
+/*  margin: 0 12px 0 0;*/
+/*  padding: 15px;*/
+/*  width: 65px;*/
+
+/*  display: flex;*/
+/*  align-items: center;*/
+/*  justify-content: center;*/
+
+/*  font-family: "Source Sans Pro", sans-serif;*/
+/*  font-size: 16px;*/
+/*  line-height: 18px;*/
+
+/*  border: 1px solid #1D1F22;*/
+/*  cursor: pointer;*/
+/*}*/

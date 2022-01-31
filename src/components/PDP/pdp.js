@@ -6,12 +6,15 @@ import Price from "../price/price";
 import {CurrencyContext} from "../currency-context/currency-context";
 import {ApolloClient, gql, InMemoryCache} from "@apollo/client";
 import {withRouter} from "../../hocs/withRouter";
+import Attribute from "../attribute/attribute";
 
 class ProductDescriptionPage extends React.Component {
   _client = new ApolloClient({
     uri: 'http://localhost:4000/',
     cache: new InMemoryCache()
   });
+
+  attributes = [];
 
   state = {
     id: null,
@@ -21,7 +24,7 @@ class ProductDescriptionPage extends React.Component {
     symbols: [],
     gallery: [],
     description: null,
-    mainPhotoSrc: null
+    mainPhotoSrc: null,
   }
 
   componentDidMount() {
@@ -29,6 +32,10 @@ class ProductDescriptionPage extends React.Component {
       .then(data => {
         const amounts = data.prices.map(price => price.amount);
         const symbols = data.prices.map(price => price.currency.symbol);
+        this.attributes = data.attributes.map(attr => {
+          const items = attr.items.map(item => [item.id, item.value])
+          return {name: attr.name, type: attr.type, items: items}
+        });
 
         this.setState({
           id: this.props.params.id,
@@ -57,7 +64,17 @@ class ProductDescriptionPage extends React.Component {
               amount
             },
             gallery,
-            description
+            description,
+            attributes {
+              id,
+              name,
+              type,
+              items {
+                displayValue,
+                value,
+                id
+              }
+            }
           }
         }`
     }).then(data => data.data.product);
@@ -75,6 +92,12 @@ class ProductDescriptionPage extends React.Component {
         return {mainPhotoSrc: e.target.src};
       })
     }
+  }
+
+  renderAttributes = () => {
+    return this.attributes.map(attr => {
+      return <Attribute key={attr.name} name={attr.name} type={attr.type} values={attr.items} />
+    })
   }
 
   renderImages = () => {
@@ -124,15 +147,8 @@ class ProductDescriptionPage extends React.Component {
 
                   <div className="name">{this.state.name}</div>
 
-                  <div className="size-box">
-                    <span>Size:</span>
-
-                    <div className="sizes">
-                      <div className="size">XS</div>
-                      <div className="size">S</div>
-                      <div className="size">M</div>
-                      <div className="size">L</div>
-                    </div>
+                  <div className="attributes">
+                    { this.renderAttributes() }
                   </div>
 
                   <div className="price-box">

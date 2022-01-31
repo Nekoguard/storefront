@@ -99,7 +99,7 @@ export default class ProductListingPage extends React.Component {
 
             return (
             <div className="product-page">
-              <h1 className="title">{ category }</h1>
+              <h2 className="title">{ category }</h2>
 
               <div className="products">
                 { this.state.products.map(({id, name, img, price}) => {

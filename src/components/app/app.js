@@ -9,6 +9,7 @@ import TechPage from "../pages/tech-page/tech-page";
 import Header from "../header/header";
 import { CurrencyContext } from "../currency-context/currency-context";
 import ProductDescriptionPage from "../PDP/pdp";
+import Cart from "../cart/cart";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -43,6 +44,7 @@ export default class App extends React.Component {
                 <Route path="/:id" element={ <ProductDescriptionPage /> } />
                 <Route path="clothes/:id" element={ <ProductDescriptionPage /> } />
                 <Route path="tech/:id" element={ <ProductDescriptionPage /> } />
+                <Route exact path="/cart/" element={ <Cart /> }/>
               </Routes>
             </div>
           </div>
